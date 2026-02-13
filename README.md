@@ -1,3 +1,3 @@
 # Valentine-
 
-Accède à la page ici : https://nagini38.github.io/Valentine-/
+Access the page here: https://nagini38.github.io/Valentine-/
