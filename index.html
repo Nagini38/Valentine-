@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Be My Valentine? 💕</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
@@ -13,15 +13,21 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
         body {
             font-family: 'Quicksand', sans-serif;
             background: linear-gradient(135deg, #1a0011 0%, #3d0029 30%, #5c0a3e 60%, #2a0020 100%);
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            position: relative;
         }
 
         /* Floating hearts background */
@@ -423,16 +429,18 @@
             }
         }
 
-        // Move the No button to a random position
+        // Move the No button to a random position within visible viewport
         function moveNoButton() {
-            const windowWidth = window.innerWidth;
-            const windowHeight = window.innerHeight;
+            const vw = document.documentElement.clientWidth;
+            const vh = document.documentElement.clientHeight;
             const btnWidth = noBtn.offsetWidth;
             const btnHeight = noBtn.offsetHeight;
-            const maxX = windowWidth - btnWidth - 20;
-            const maxY = windowHeight - btnHeight - 20;
-            const randomX = Math.max(20, Math.random() * maxX);
-            const randomY = Math.max(20, Math.random() * maxY);
+            const margin = 10;
+            const maxX = vw - btnWidth - margin;
+            const maxY = vh - btnHeight - margin;
+            const randomX = Math.max(margin, Math.random() * maxX);
+            const randomY = Math.max(margin, Math.random() * maxY);
+            noBtn.style.position = 'fixed';
             noBtn.style.left = randomX + 'px';
             noBtn.style.top = randomY + 'px';
         }
